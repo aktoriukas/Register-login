@@ -10,7 +10,17 @@
             <input type="submit">
         </form>
         <?php
+        
         include ("valid.php");
+        include ("dbconn.php");
+
+        if (!$conn){
+            echo "Connection false <br>";
+        }else{
+            echo "Connection OK <br>";
+        }
+
+
         $username = $_POST['username'];
         $password = $_POST['password'];
         $repassword = $_POST['repassword'];
@@ -58,18 +68,16 @@
                 $emailError = "Invalid email adress <br>";
             }
         }
-    
-
-        function test_input($data) {
-            $data = trim($data);
-            $data = stripslashes($data);
-            $data = htmlspecialchars($data);
-            return $data;
-            } 
         
         if ($Error == 1){
             echo "ERROR";
-        }
+        }else{
+            $sql = "INSERT INTO people (username,kodas,email)
+            VALUES (?,?,?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("sss", $username, $password, $email);
+            $stmt->execute();
+        }        
         ?>
         
         
