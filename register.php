@@ -1,18 +1,15 @@
 <html>
     <head>
+    <link rel="stylesheet" href="stylesheet.css">
     </head>
     <body>
-        <form action="register.php" method="POST">
-            Username: <input type="text" name='username'><br><br>
-            Password: <input type="text" name="password"><br><br>
-            Repeat password: <input type="text" name="repassword"><br><br>
-            Email: <input type="text" name='email'><br><br>
-            <input type="submit">
-        </form>
         <?php
         
         include ("valid.php");
         include ("dbconn.php");
+        $passError = '';
+        $usernameError = '';
+        $emailError = '';
 
         if (!$conn){
             echo "Connection false <br>";
@@ -30,17 +27,17 @@
         // PASSWORD
         if(empty($password) or empty($repassword)){
             $Error = 1;
-            $passError = "Password is empty";
+            $passError = "Password is empty<BR>";
         }else{
             $password = test_input($password);
             $repassword = test_input($repassword);
-            if(!ctype_alnum($password)){
+            if(ctype_alnum($password) == FALSE){
                 $Error = 1 ;
-                $passError = "Password can contain only letters and numbers";
+                $passError = "Password can contain only letters and numbers<BR>";
             }else{
                 if ($password !== $repassword){
                     $Error = 1;    
-                    $passError = "Password is not matching";
+                    $passError = "Password is not matching<BR>";
                 }
             }
         }
@@ -48,12 +45,14 @@
         // USERNAME
         if(empty($username)){
             $Error = 1;
-            $usernameError = "User name is empty";
+            $usernameError = "User name is empty<BR>";
         }else{
             $username = test_input($username);
-            if (!preg_match("/^[a-zA-Z ]*$/",$surname)){
+            if (ctype_alnum($username) == FALSE){
                 $Error = 1;
-                $usernameError = "Only letter allowed";
+                $usernameError = "Only letter allowed<BR>";
+            }else{
+                $usernameError = "all good<BR>";
             }
         }
 
@@ -70,16 +69,26 @@
         }
         
         if ($Error == 1){
-            echo "ERROR";
+            echo "ERROR <br>";
         }else{
             $sql = "INSERT INTO people (username,kodas,email)
             VALUES (?,?,?)";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("sss", $username, $password, $email);
             $stmt->execute();
-        }        
+        } 
         ?>
-        
+        <form action="register.php" method="POST">
+            Username: <input type="text" name='username'>
+            <span class="error"><?php echo $usernameError?></span><br><br>
+            Password: <input type="text" name="password">
+            <span class="error"><?php echo $passError?></span><br><br>
+            Repeat password: <input type="text" name="repassword">
+            <br><br>
+            Email: <input type="text" name='email'>
+            <span class="error"><?php echo $emailError?></span><br><br>
+            <input type="submit">
+        </form>
         
 
     </body>
