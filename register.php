@@ -74,9 +74,10 @@
                 $result = $conn->query($sql);
                 $result2 = $conn->query($sql2);
                 if ($result->num_rows == 0 and $result2->num_rows == 0){
+                    $finalpass = lock($password); //lock password
                     $sql = "INSERT INTO people (username,kodas,email) VALUES (?,?,?)"; // save 
                     $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("sss", $username, $password, $email);
+                    $stmt->bind_param("sss", $username, $finalpass, $email);
                     $stmt->execute();
                 }else{
                     if ($result->num_rows > 0){
