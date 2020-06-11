@@ -8,7 +8,7 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-    if(empty($username)){
+    if(empty($username)){ 
         $Error = "Username is empty <br>";
     }elseif(empty($password)){
         $Error = "Password is empty <br>";
