@@ -1,5 +1,6 @@
 body{
-    background-color: grey;
+    background-color: red;
     color: black;
-    
+    margin: auto;
+    width: 20%;
 }

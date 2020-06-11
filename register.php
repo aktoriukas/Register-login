@@ -89,7 +89,7 @@
                 }
             }
         ?>
-        <form action="register.php" method="POST">
+        <form action="register.php" method="POST" autocomplete="off">
             Username: <input type="text" name='username'>
             <span class="error"><?php echo $usernameError?></span><br><br>
             Password: <input type="text" name="password">
@@ -100,7 +100,9 @@
             <span class="error"><?php echo $emailError?></span><br><br>
             <input type="submit">
         </form>
-        
+        <form action="index.php">
+        <input type="submit" value="Go back" />
+
 
     </body>
 </html>
