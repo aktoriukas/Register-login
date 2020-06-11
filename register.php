@@ -69,12 +69,12 @@
         if ($Error == 1){
             echo "ERROR <br>";
         }else{
-                $sql = "SELECT * FROM people WHERE username = '$username'";
-                $sql2 = "SELECT * FROM people WHERE email = '$email'";
+                $sql = "SELECT * FROM people WHERE username = '$username'"; //check for existing username
+                $sql2 = "SELECT * FROM people WHERE email = '$email'"; //check for existing email
                 $result = $conn->query($sql);
                 $result2 = $conn->query($sql2);
                 if ($result->num_rows == 0 and $result2->num_rows == 0){
-                    $sql = "INSERT INTO people (username,kodas,email) VALUES (?,?,?)"; // SAVE 
+                    $sql = "INSERT INTO people (username,kodas,email) VALUES (?,?,?)"; // save 
                     $stmt = $conn->prepare($sql);
                     $stmt->bind_param("sss", $username, $password, $email);
                     $stmt->execute();

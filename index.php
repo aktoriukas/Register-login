@@ -11,5 +11,13 @@
         <form action="register.php" method="post">
             <input type="submit" value="register">
         </form>
+        <?php
+        include ("valid.php");
+        include ("dbconn.php");
+
+        $kodas = "Gedas";
+        $final = lock($kodas);   
+        echo $final;     
+        ?>
     </body>
 </html>
