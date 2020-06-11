@@ -51,8 +51,6 @@
             if (ctype_alnum($username) == FALSE){
                 $Error = 1;
                 $usernameError = "Only letter allowed<BR>";
-            }else{
-                $usernameError = "all good<BR>";
             }
         }
 
@@ -67,16 +65,28 @@
                 $emailError = "Invalid email adress <br>";
             }
         }
-        
+
         if ($Error == 1){
             echo "ERROR <br>";
         }else{
-            $sql = "INSERT INTO people (username,kodas,email)
-            VALUES (?,?,?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sss", $username, $password, $email);
-            $stmt->execute();
-        } 
+                $sql = "SELECT * FROM people WHERE username = '$username'";
+                $sql2 = "SELECT * FROM people WHERE email = '$email'";
+                $result = $conn->query($sql);
+                $result2 = $conn->query($sql2);
+                if ($result->num_rows == 0 and $result2->num_rows == 0){
+                    $sql = "INSERT INTO people (username,kodas,email) VALUES (?,?,?)"; // SAVE 
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("sss", $username, $password, $email);
+                    $stmt->execute();
+                }else{
+                    if ($result->num_rows > 0){
+                        $usernameError = "Username is already taken";
+                    }
+                    if($result2->num_rows > 0){
+                        $emailError = "Email is already taken";
+                    }
+                }
+            }
         ?>
         <form action="register.php" method="POST">
             Username: <input type="text" name='username'>
