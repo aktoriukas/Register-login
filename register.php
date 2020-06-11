@@ -17,7 +17,7 @@
             echo "Connection OK <br>";
         }
 
-
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $username = $_POST['username'];
         $password = $_POST['password'];
         $repassword = $_POST['repassword'];
@@ -66,9 +66,7 @@
             }
         }
 
-        if ($Error == 1){
-            echo "ERROR <br>";
-        }else{
+        if ($Error == 0){
                 $sql = "SELECT * FROM people WHERE username = '$username'"; //check for existing username
                 $sql2 = "SELECT * FROM people WHERE email = '$email'"; //check for existing email
                 $result = $conn->query($sql);
@@ -79,6 +77,7 @@
                     $stmt = $conn->prepare($sql);
                     $stmt->bind_param("sss", $username, $finalpass, $email);
                     $stmt->execute();
+                    $success = "Account registrated successfully";
                 }else{
                     if ($result->num_rows > 0){
                         $usernameError = "Username is already taken";
@@ -88,17 +87,20 @@
                     }
                 }
             }
+}
         ?>
         <form action="register.php" method="POST" autocomplete="off">
-            Username: <input type="text" name='username'>
+            Username:<br> <input type="text" name='username'><br>
             <span class="error"><?php echo $usernameError?></span><br><br>
-            Password: <input type="text" name="password">
+            Password:<br> <input type="text" name="password"><br>
             <span class="error"><?php echo $passError?></span><br><br>
-            Repeat password: <input type="text" name="repassword">
+            Repeat password:<br> <input type="text" name="repassword">
             <br><br>
-            Email: <input type="text" name='email'>
+            Email:<br> <input type="text" name='email'><br>
             <span class="error"><?php echo $emailError?></span><br><br>
             <input type="submit">
+            <span class="success"><?php echo $success?></span><br><br>
+
         </form>
         <form action="index.php">
         <input type="submit" value="Go back" />
