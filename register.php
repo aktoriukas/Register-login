@@ -92,9 +92,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         <form action="register.php" method="POST" autocomplete="off">
             Username:<br> <input type="text" name='username'><br>
             <span class="error"><?php echo $usernameError?></span><br><br>
-            Password:<br> <input type="text" name="password"><br>
+            Password:<br> <input type="password" name="password"><br>
             <span class="error"><?php echo $passError?></span><br><br>
-            Repeat password:<br> <input type="text" name="repassword">
+            Repeat password:<br> <input type="password" name="repassword">
             <br><br>
             Email:<br> <input type="text" name='email'><br>
             <span class="error"><?php echo $emailError?></span><br><br>
