@@ -13,14 +13,18 @@
     }elseif(empty($password)){
         $Error = "Password is empty <br>";
     }else{
-        $final =lock($password);
 
-        $sql = "SELECT * FROM people WHERE kodas = '$final' and username = '$username'";
-        $result = $conn->query($sql);
-        if($result->num_rows == 1){
-            echo "you are loged in";
+        $final = password_hash($password, PASSWORD_BCRYPT);
+
+        $sql = "SELECT kodas FROM people WHERE username = '$username' LIMIT 1";
+        $result = mysqli_query($conn,$sql);
+        while($row = mysqli_fetch_array($result)){
+            $hpass =  $row['kodas'];
+        }
+        if (password_verify($password, $hpass)){
+            echo "Success!";
         }else{
-            $Error = "wrong password or username";
+            echo "invalid password ";
         }
     }
 

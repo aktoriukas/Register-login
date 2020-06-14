@@ -72,7 +72,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 $result = $conn->query($sql);
                 $result2 = $conn->query($sql2);
                 if ($result->num_rows == 0 and $result2->num_rows == 0){
-                    $finalpass = lock($password); //lock password
+
+                    $finalpass = password_hash($password, PASSWORD_BCRYPT);
+
                     $sql = "INSERT INTO people (username,kodas,email) VALUES (?,?,?)"; // save 
                     $stmt = $conn->prepare($sql);
                     $stmt->bind_param("sss", $username, $finalpass, $email);
@@ -97,9 +99,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             Repeat password:<br> <input type="password" name="repassword">
             <br><br>
             Email:<br> <input type="text" name='email'><br>
-            <span class="error"><?php echo $emailError?></span><br><br>
-            <input type="submit">
-            <span class="success"><?php echo $success?></span><br><br>
+            <span class="error"><?php echo $emailError?></span><br>
+            <input type="submit"><br>
+            <span class="success"><?php echo $success?></span><br>
 
         </form>
         <form action="index.php">
