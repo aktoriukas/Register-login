@@ -13,9 +13,7 @@
     }elseif(empty($password)){
         $Error = "Password is empty <br>";
     }else{
-
         $final = password_hash($password, PASSWORD_BCRYPT);
-
         $sql = "SELECT kodas FROM people WHERE username = '$username' LIMIT 1";
         $result = mysqli_query($conn,$sql);
         while($row = mysqli_fetch_array($result)){
@@ -27,14 +25,11 @@
             echo "invalid password ";
         }
     }
-
         ?>
     </head>
     <body>
     <span class="error"><?php echo $Error?></span><br><br>
-
     <form action="index.php">
     <input type="submit" value="Go back" />
-
     </body>
 </html>

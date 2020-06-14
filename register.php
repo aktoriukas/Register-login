@@ -72,9 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 $result = $conn->query($sql);
                 $result2 = $conn->query($sql2);
                 if ($result->num_rows == 0 and $result2->num_rows == 0){
-
                     $finalpass = password_hash($password, PASSWORD_BCRYPT);
-
                     $sql = "INSERT INTO people (username,kodas,email) VALUES (?,?,?)"; // save 
                     $stmt = $conn->prepare($sql);
                     $stmt->bind_param("sss", $username, $finalpass, $email);
