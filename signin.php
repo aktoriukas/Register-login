@@ -1,7 +1,6 @@
-<html>
-    <head>
-        <link rel="stylesheet" href="stylesheet.css">
-        <?php 
+<?php 
+        session_start();
+
         include ("valid.php");
         include ("dbconn.php");
         
@@ -20,14 +19,25 @@
             $hpass =  $row['kodas'];
         }
         if (password_verify($password, $hpass)){
-            echo "Success!";
+
+            session_start();
+            $_SESSION["loggedin"] = true;
+            $_SESSION["username"] = $username;
+
+            header("location: welcome.php");
+            exit;
         }else{
             echo "invalid password ";
         }
     }
-        ?>
-    </head>
-    <body>
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <link rel="stylesheet" href="stylesheet.css">
+
     <span class="error"><?php echo $Error?></span><br><br>
     <form action="index.php">
     <input type="submit" value="Go back" />
