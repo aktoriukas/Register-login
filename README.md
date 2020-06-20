@@ -1,17 +1,17 @@
 # Register-login-note
 
-PHP, HTML and CSS based application.
+##PHP, HTML and CSS based application.
 
-Register you account.
-	-Encrypted password.
-	-Checks for existing user with same pass or email.
+*Register you account.
+	*Encrypted password.
+	*Checks for existing user with same pass or email.
 
-Log in.
+*Log in.
 
-Notes
-	-Write a note.
-	-Notes are saved in DataBase.
-	-Review notes from other people.
+*Notes
+	*Write a note.
+	*Notes are saved in DataBase.
+	*Review notes from other people.
 
 Like note (in progress)
 
