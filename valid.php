@@ -1,4 +1,4 @@
-<?php
+<?php 
     include ("dbconn.php");
 
     function test_input($data) {
