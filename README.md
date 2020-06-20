@@ -16,7 +16,9 @@ Notes
 Like note (in progress)
 
 ![LOGO](/images/login.png)
-Format: ![Alt Text](url)
+![LOGO](/images/register.png)
+![LOGO](/images/note.png)
+
 
 
 
