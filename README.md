@@ -1,6 +1,6 @@
 # Register-login-note
 
-## PHP, HTML and CSS based application.
+## PHP, HTML, MYSQL and CSS based application.
 
 * Register you account.
 	* Encrypted password.
@@ -8,7 +8,11 @@
 
 * Log in.
 
-* Notes
+* MYSQL based database.
+	* Saving tada to db.
+	* Reading from db.
+
+* Notes.
 	* Write a note.
 	* Notes are saved in DataBase.
 	* Review notes from other people.
