@@ -1,10 +1,18 @@
 <?php
+    include ("dbconn.php");
+
     function test_input($data) {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
         } 
+    function registerAccount($sql, $username, $finalpass, $email){
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sss", $username, $finalpass, $email);
+        $stmt->execute();
+
+    }
      
    /* function lock($code){
         $key = array("A"=>"Q", "B"=>"W", "C"=>"E", "D"=>"R", "E"=>"T", "F"=>"Y", "G"=>"U", "H"=>"I", "I"=>"O", "J"=>"P", "K"=>"A", "L"=>"S", "M"=>"D", "N"=>"F", "O"=>"G", "P"=>"H", "Q"=>"J", "R"=>"K", "S"=>"L", "T"=>"Z", "U"=>"X", "V"=>"C", "W"=>"V", "X"=>"B", "Y"=>"N", "Z"=>"M",);

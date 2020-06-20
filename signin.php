@@ -19,8 +19,13 @@
             $hpass =  $row['kodas'];
         }
         if (password_verify($password, $hpass)){
-
+            $sql = "SELECT id FROM people WHERE username = '$username' LIMIT 1";
+            $result = mysqli_query($conn,$sql);
+            while($row = mysqli_fetch_array($result)){
+                $id =  $row['id'];
+            }
             session_start();
+            $_SESSION["id"] = $id;
             $_SESSION["loggedin"] = true;
             $_SESSION["username"] = $username;
 

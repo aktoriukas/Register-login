@@ -1,16 +1,50 @@
 body{
     background-color: grey;
-    margin: auto;
     text-align: center;
     color: white;
-    padding-top: 50px; 
+    margin: 20px;
+    float: auto;
 
 }
 .error{
-    color: white;
+    color: rgb(205, 194, 194);
     font-size: 12px;
-    text-shadow: 0px 1px red;
 }
 .success{
     color: rgb(171, 225, 171);
+}
+.link{
+    text-decoration: none;
+    color: white;
+    opacity: 0.8;
+    transition: opacity 0.5s ease-in-out;
+}
+.link:hover{
+    opacity: 0.2;
+}
+.dispnote{
+    color:black;
+    font-family: "Lucida Console", Courier, monospace;
+}
+.notetxt{
+    height:50px;
+     width:400px; 
+     background-color: grey;
+     padding: 20px;
+}
+.scorenum{
+    font-size: 12px;
+    color:black;
+}
+.count{
+    background-color:grey;
+    border: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: 1s;
+    font-size: 15px;
+}
+.count:hover{
+    opacity: 0.5;
+    color: white;
 }
