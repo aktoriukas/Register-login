@@ -57,7 +57,7 @@
     //EMAIL
     if(empty($email)){
         $Error = 1;
-        $emailError = "empty email <br>";
+        $emailError = "Email is empty<br>";
     }else{
         $email = test_input($email);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)){ 

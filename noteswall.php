@@ -30,6 +30,7 @@ $result = mysqli_query($conn, $sql);
         $score = mysqli_fetch_array($resultt);
 
         echo '<a class="scorenum">' . $score['score'] . '</a>' ;
+        echo '<button onclick="likeNote()" type="button">!</button>';
 }
 echo '<br>';
 
