@@ -24,6 +24,7 @@ if(isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true){
     </form>
 
     <?php 
+    
         include ("dbconn.php");
         $sql = "CREATE TABLE people (
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
